@@ -24,5 +24,6 @@ double G2_dis();       //g2(x) = 2*x^3*exp(-x^2)
 double Mu_dis();
 double Watt_dis();
 int Nu_dis();
+double Uni_gamma();
 
 #endif /* defined(___44_Project__Foundation__) */

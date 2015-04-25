@@ -43,3 +43,7 @@ double Watt_dis(){
 int Nu_dis(){
     return (int)(2.45+Uni_dis());
 }
+
+double Uni_gamma(){
+    return Uni_dis()*2*pi;
+}
