@@ -64,7 +64,7 @@ double dis_min(Neutron n, double x0, double y0, double z0, double R){
     return m;
 }
 
-void boundary(Neutron n, double x0, double y0, double z0){
+void boundary(Neutron &n, double x0, double y0, double z0){
     
     if (n.getX() >= x0) {
         n.setposition(2*x0-n.getX(), n.getY(), n.getZ());
@@ -92,7 +92,7 @@ void boundary(Neutron n, double x0, double y0, double z0){
     }
 }
 
-void set_region(Neutron n, double R){
+void set_region(Neutron &n, double R){
     if (sqrt(n.getX()*n.getX()+n.getY()*n.getY()) < R) {
         n.set_R(1);
     } else {

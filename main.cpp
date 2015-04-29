@@ -16,8 +16,8 @@
 #include "Xsection.h"
 #include "Geometry.h"
 
-#define source_number 1
-#define iteration 1
+#define source_number 10000
+#define iteration 5
 
 const double delta_d = 1E-15;
 
@@ -30,7 +30,7 @@ int main(int argc, const char * argv[]) {
     vector <Neutron> fissionBank;
     double k = 1;
     double x0, y0, z0, R;
-    double pitch = 10;
+    double pitch = 5;
     x0 = pitch/2;
     y0 = pitch/2;
     z0 = 50;
@@ -58,7 +58,7 @@ int main(int argc, const char * argv[]) {
                             case 1:{
                                 historyBank[0].setposition((historyBank[0].getX()+historyBank[0].getOmegax()*(dis_coll+delta_d)), (historyBank[0].getY()+historyBank[0].getOmegay()*(dis_coll+delta_d)), (historyBank[0].getZ()+historyBank[0].getOmegaz()*(dis_coll+delta_d)));
                                 historyBank[0].scattering(isotope);
-                                cout<<"Scatter"<<endl;
+                                //cout<<"Scatter"<<endl;
                                 //cout<<historyBank[0].getX()<<endl;
                                 //cout<<historyBank[0].getY()<<endl;
                                 //cout<<historyBank[0].getZ()<<endl;
@@ -84,7 +84,7 @@ int main(int argc, const char * argv[]) {
                         }
                     } else {
                         historyBank[0].setposition(historyBank[0].getX()+historyBank[0].getOmegax()*(dis_surface+delta_d), historyBank[0].getY()+historyBank[0].getOmegay()*(dis_surface+delta_d), historyBank[0].getZ()+historyBank[0].getOmegaz()*(dis_surface+delta_d));
-                        cout<<"Surface"<<endl;
+                        //cout<<"Surface"<<endl;
                         //cout<<historyBank[0].getX()<<endl;
                         //cout<<historyBank[0].getY()<<endl;
                         //cout<<"z"<<historyBank[0].getZ()<<endl;
@@ -92,8 +92,8 @@ int main(int argc, const char * argv[]) {
                         set_region(historyBank[0], R);
                         //cout<<"4"<<endl;
                     }
-                    cout<<historyBank[0].getX()<<endl;
-                    cout<<historyBank[0].getY()<<endl;
+                    //cout<<historyBank[0].getX()<<endl;
+                    //cout<<historyBank[0].getY()<<endl;
                 }
                 if(historyBank[0].getWeight() == 0){
                     historyBank.pop_back();
@@ -103,7 +103,7 @@ int main(int argc, const char * argv[]) {
         //k = fissionBank.size()/sourceBank.size();
         //sourceBank.clear();
         
-        //cout<<fissionBank.size()<<endl;
+        cout<<fissionBank.size()<<endl;
         fissionBank.clear();
         
     }
