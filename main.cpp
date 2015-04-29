@@ -48,6 +48,7 @@ int main(int argc, const char * argv[]) {
                     //cout<<dis_surface<<endl;
                     //cout<<dis_coll<<endl;
                     if (dis_coll < dis_surface) {
+                        historyBank[0].setposition((historyBank[0].getX()+historyBank[0].getOmegax()*(dis_coll+delta_d)), (historyBank[0].getY()+historyBank[0].getOmegay()*(dis_coll+delta_d)), (historyBank[0].getZ()+historyBank[0].getOmegaz()*(dis_coll+delta_d)));
                         int isotope;
                         isotope = Col_iso(historyBank[0]);
                         //cout<<isotope<<endl;
@@ -56,7 +57,6 @@ int main(int argc, const char * argv[]) {
                         //cout<<reaction<<endl;
                         switch (reaction) {     //1-Scatter or 2-Capture or 3-Fission
                             case 1:{
-                                historyBank[0].setposition((historyBank[0].getX()+historyBank[0].getOmegax()*(dis_coll+delta_d)), (historyBank[0].getY()+historyBank[0].getOmegay()*(dis_coll+delta_d)), (historyBank[0].getZ()+historyBank[0].getOmegaz()*(dis_coll+delta_d)));
                                 historyBank[0].scattering(isotope);
                                 //cout<<"Scatter"<<endl;
                                 //cout<<historyBank[0].getX()<<endl;
@@ -100,9 +100,9 @@ int main(int argc, const char * argv[]) {
                 }
             }
         }
-        //k = fissionBank.size()/sourceBank.size();
-        //sourceBank.clear();
-        
+        k = fissionBank.size()/sourceBank.size();
+        sourceBank.clear();
+        fissionBank
         cout<<fissionBank.size()<<endl;
         fissionBank.clear();
         
