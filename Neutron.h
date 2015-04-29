@@ -16,12 +16,12 @@
 
 const double A[4] = {1.00794, 15.9994, 235.0439299, 238.05078826};
 const double m_n = 1.00866491600;
-const double k_B = 8.6173324E-5;
+const double k_B = 8.6173324E-11;
 const double T = 293.0;
 
 class Neutron{      //Neutron class
 public:
-    //Neutron();
+    Neutron();
     Neutron(double newx,double newy,double newz,double newE,double newOmegax,double newOmegay,double newOmegaz){
         x = newx; y = newy; z = newz;
         E = newE;
@@ -36,19 +36,23 @@ public:
     double getOmegax(){return Omegax;};
     double getOmegay(){return Omegay;};
     double getOmegaz(){return Omegaz;};
-    void change_R(){ Region = Region*-1;}
+    int getWeight(){return weight;}
+    void set_R(int newR){ Region = newR;}
     int getR(){return Region;};
     void capture();
     void scattering(int i);     //i=0-H, 1-O, 2-U235, 3-U238
     void fission();
-    
+    void setposition(double newx,double newy,double newz){x = newx; y = newy; z = newz;};
+    void setdirection(double newOmegax, double newOmegay, double newOmegaz){
+        Omegax = newOmegax; Omegay = newOmegay; Omegaz = newOmegaz;
+    }
     
 private:
     double x,y,z;       //Position
     double E;       //Energy
     double Omegax,Omegay,Omegaz;        //Direction
     int Region;     //Region 1-fuel -1-moderator
-    double weight;
+    int weight;
 };
 
 

@@ -21,7 +21,7 @@ void Neutron::scattering(int i){
     y = beta*v;
     omega1 = sqrt(pi)*y/(2+sqrt(pi)*y);
     V_tilde = v;
-    while (Uni_dis() <= sqrt(v*v+V_tilde*V_tilde-2*v*V_tilde*mu_tilde)/(v+V_tilde)) {
+    while (Uni_dis() > sqrt(v*v+V_tilde*V_tilde-2*v*V_tilde*mu_tilde)/(v+V_tilde)) {
         if (Uni_dis() < omega1) {
             x = G1_dis();
         } else {
@@ -58,20 +58,41 @@ void Neutron::scattering(int i){
     Omegay_cprime = mu_c*Omegay_c+(Omegay_c*Omegaz_c*cos(gamma_c)-Omegax_c*sin(gamma_c))*sqrt((1-mu_c*mu_c)/(1-Omegaz_c*Omegaz_c));
     Omegaz_cprime = mu_c*Omegaz_c-cos(gamma_c)*sqrt((1-mu_c*mu_c)*(1-Omegaz_c*Omegaz_c));
     
-    double v_labprime_x, v_labprime_y, v_labprime_z, v_lanprime;
+    double v_labprime_x, v_labprime_y, v_labprime_z, v_labprime;
     v_labprime_x = vc*Omegax_cprime;
     v_labprime_y = vc*Omegay_cprime;
     v_labprime_z = vc*Omegaz_cprime;
     
-    v_lanprime = sqrt(v_labprime_x*v_labprime_x+v_labprime_y*v_labprime_y+v_labprime_z*v_labprime_z);
+    v_labprime = sqrt(v_labprime_x*v_labprime_x+v_labprime_y*v_labprime_y+v_labprime_z*v_labprime_z);
     
-    E = m_n*v_lanprime*v_lanprime/2;
-    Omegax = v_labprime_x/v_lanprime;
-    Omegay = v_labprime_y/v_lanprime;
-    Omegaz = v_labprime_z/v_lanprime;
+    E = m_n*v_labprime*v_labprime/2;
+    Omegax = v_labprime_x/v_labprime;
+    Omegay = v_labprime_y/v_labprime;
+    Omegaz = v_labprime_z/v_labprime;
 }
 
 void Neutron::fission(){
     weight = 0;
+}
+
+Neutron::Neutron(){
+    double r, theta, newz;
+    r = Uni_dis()*1.5;
+    theta = Uni_dis()*2*pi;
+    newz = Uni_dis()*100-50;
+    x = r*cos(theta);
+    y = r*sin(theta);
+    z = newz;
+    double mu, gamma;
+    mu = Mu_dis();
+    gamma = Uni_dis()*2*pi;
+    Omegax = sqrt(1-mu*mu)*cos(gamma);
+    Omegay = sqrt(1-mu*mu)*sin(gamma);
+    Omegaz = mu;
+    double newE;
+    newE = 2*Uni_dis()+8;
+    E = newE;
+    weight = 1;
+    Region = 1;
 }
 

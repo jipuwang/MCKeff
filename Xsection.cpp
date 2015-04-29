@@ -1,4 +1,4 @@
-//
+ //
 //  Xsection.cpp
 //  544_Project
 //
@@ -14,7 +14,7 @@ double Sigma(double c1, double c2, double c3, double E){
 
 double Sigma_res(double c1, double c2, double c3, double E){
     double y;
-    y = 2/c2*(E-c1);
+    y = 2/c3*(E-c1);
     return c2*sqrt(c1/E)/(1+y*y);
 }
 
@@ -158,4 +158,109 @@ double Sigma_M(int i, double E){
     }
     return S;
     
+}
+
+
+int Col_iso(Neutron n){
+    int i;      //Isotope
+    switch (n.getR()) {
+        case 1:{
+            double r, s = 0;
+            r = Uni_dis()*Sigma_F(4, n.getE());
+            for (int j = 0; j<4; j++) {
+                s = s+Sigma_F(j, n.getE());
+                if (r < s) {
+                    i = j;
+                    break;
+                }
+            }
+            break;
+        }
+        case -1:{
+            double r, s = 0;
+            r = Uni_dis()*Sigma_M(4, n.getE());
+            for (int j = 0; j<4; j++) {
+                s = s+Sigma_M(j, n.getE());
+                if (r < s) {
+                    i = j;
+                    break;
+                }
+            }
+            break;
+        }
+        default:
+            break;
+    }
+    return i;
+}
+
+int Col_rea(Neutron n, int i){
+    int rea = 0;
+    double r, s = 0;
+    switch (i) {
+        case 0:{
+            r = Uni_dis()*sigmaH(3, n.getE());
+            for (int j = 1; j<3; j++) {
+                s = s + sigmaH(j, n.getE());
+                if (r <= s) {
+                    rea = j;
+                    break;
+                }
+            }
+            break;
+        }
+        case 1:{
+            r = Uni_dis()*sigmaO(3, n.getE());
+            for (int j = 1; j<3; j++) {
+                s = s + sigmaO(j, n.getE());
+                if (r <= s) {
+                    rea = j;
+                    break;
+                }
+            }
+            break;
+        }
+        case 2:{
+            r = Uni_dis()*sigmaU235(4, n.getE());
+            for (int j = 1; j<4; j++) {
+                s = s + sigmaU235(j, n.getE());
+                if (r <= s) {
+                    rea = j;
+                    break;
+                }
+            }
+            break;
+        }
+        case 3:{
+            r = Uni_dis()*sigmaU238(3, n.getE());
+            for (int j = 1; j<3; j++) {
+                s = s + sigmaU238(j, n.getE());
+                if (r <= s) {
+                    rea = j;
+                    break;
+                }
+            }
+            break;
+        }
+        default:
+            break;
+    }
+    return rea;
+}
+
+double dis_collision(Neutron n){
+    double d;
+    switch (n.getR()) {
+        case 1:{
+            d = Exp_dis(Sigma_F(4, n.getE()));
+            break;
+        }
+        case -1:{
+            d = Exp_dis(Sigma_M(4, n.getE()));
+            break;
+        }
+        default:
+            break;
+    }
+    return d;
 }

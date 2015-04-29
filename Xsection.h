@@ -11,14 +11,20 @@
 
 #include<stdio.h>
 #include<cmath>
+#include "Neutron.h"
+#include "Foundation.h"
 
 double Sigma(double c1, double c2, double c3, double E);      //Calculate the cross section
 double Sigma_res(double c1, double c2, double c3, double E);        //Calculate the resonances cross section for U-238
 double sigmaH(int i, double E);        //Calculate the microscopic cross section. i=1-Scatter or 2-Capture or 3-total
 double sigmaO(int i, double E);       //Calculate the microscopic cross section. i=1-Scatter or 2-Capture or 3-total
-double sigmaU235(int i, double E);        //Calculate the microscopic cross section. i=1-Scatter or 2-Capture or 3-Fission or 3-total
+double sigmaU235(int i, double E);        //Calculate the microscopic cross section. i=1-Scatter or 2-Capture or 3-Fission or 4-total
 double sigmaU238(int i, double E);        //Calculate the microscopic cross section. i=1-Scatter or 2-Capture or 3-total
 double Sigma_F(int i, double E);        //Calculate the Macroscopic cross section in Fuel. i=0-H, 1-O, 2-U235, 3-U238, 4-total
 double Sigma_M(int i, double E);        //Calculate the Macroscopic cross section in Moderator. i=0-H, 1-O, 2-U235, 3-U238, 4-total
+
+int Col_iso(Neutron n);     //Sample the isotope
+int Col_rea(Neutron n, int i);      //Sample the reaction i-isotope return 1-Scatter or 2-Capture or 3-Fission
+double dis_collision(Neutron n);        //Distance to collision
 
 #endif /* defined(___44_Project__Xsection__) */
