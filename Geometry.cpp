@@ -83,12 +83,14 @@ void boundary(Neutron &n, double x0, double y0, double z0){
         n.setdirection(n.getOmegax(), -n.getOmegay(), n.getOmegaz());
     }
     if (n.getZ() >= z0) {
-        n.setposition(n.getX(), n.getY(), 2*z0-n.getZ());
-        n.setdirection(n.getOmegax(), n.getOmegay(), -n.getOmegaz());
+        //n.setposition(n.getX(), n.getY(), 2*z0-n.getZ());
+        //n.setdirection(n.getOmegax(), n.getOmegay(), -n.getOmegaz());
+        n.leak();
     }
     if (n.getZ() <= -z0) {
-        n.setposition(n.getX(), n.getY(), -2*z0-n.getZ());
-        n.setdirection(n.getOmegax(), n.getOmegay(), -n.getOmegaz());
+        //n.setposition(n.getX(), n.getY(), -2*z0-n.getZ());
+        //n.setdirection(n.getOmegax(), n.getOmegay(), -n.getOmegaz());
+        n.leak();
     }
 }
 

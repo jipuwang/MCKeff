@@ -19,5 +19,5 @@ double dis_z_plane(double z, double w, double z0);        //Calculate the distan
 double dis_z_cylinder(double x, double y, double u, double v, double x0, double y0, double R);        //Calculate the distance to a cylinder parallel to z
 double dis_min(Neutron n, double x0, double y0, double z0, double R);      //Calculate the minimum distance to the surface.
 void boundary(Neutron &n, double x0, double y0, double z0);     //Check if the neutron is out of the boundary, if it is out of boundary set back
-void set_region(Neutron &n, double R);
+void set_region(Neutron &n, double R);      //Set the region of the neutron
 #endif /* defined(___44_Project__Geometry__) */

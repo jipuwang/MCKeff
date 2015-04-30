@@ -76,13 +76,16 @@ void Neutron::fission(){
 }
 
 Neutron::Neutron(){
-    double r, theta, newz;
+    /*double r, theta, newz;
     r = Uni_dis()*1.5;
     theta = Uni_dis()*2*pi;
     newz = Uni_dis()*100-50;
     x = r*cos(theta);
     y = r*sin(theta);
-    z = newz;
+    z = newz;*/
+    x = 0;
+    y = 0;
+    z = 0;
     double mu, gamma;
     mu = Mu_dis();
     gamma = Uni_dis()*2*pi;
@@ -90,9 +93,12 @@ Neutron::Neutron(){
     Omegay = sqrt(1-mu*mu)*sin(gamma);
     Omegaz = mu;
     double newE;
-    newE = 2*Uni_dis()+8;
+    newE = Watt_dis();
     E = newE;
     weight = 1;
     Region = 1;
 }
 
+void Neutron::leak(){
+    weight = 0;
+}
