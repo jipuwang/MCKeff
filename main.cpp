@@ -35,7 +35,7 @@ int main(int argc, const char * argv[]) {
     R = 1.5;
     for (int r = 0; r < 20; r++) {
         double pitch = 0;
-        pitch = 3.0 + r * 0.1;
+        pitch = 3.6 + r * 0.1;
         x0 = pitch/2;
         y0 = pitch/2;
         for (int o = 0; o < iteration; o++) {
